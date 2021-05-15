@@ -1,11 +1,12 @@
 import React from "react";
-import { Counter } from "./features/counter/Counter";
+// import { Counter } from "./features/counter/Counter";
 import "./App.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
 import styled from "styled-components";
 import SideBar from "./components/SideBar";
+import Chat from "./components/Chat";
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
           <AppBody>
             <SideBar />
             <Switch>
-              <Route exact path="/"></Route>
+              <Route exact path="/">
+                <Chat />
+              </Route>
             </Switch>
           </AppBody>
         </>
@@ -28,5 +31,6 @@ function App() {
 export default App;
 const AppBody = styled.div`
   display: flex;
+  flex-wrap: wrap;
   height: 100vh;
 `;
