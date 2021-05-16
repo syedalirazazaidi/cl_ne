@@ -16,8 +16,11 @@ import AddIcon from "@material-ui/icons/Add";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { db } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
+import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function SideBar() {
+  const [user] = useAuthState(auth);
   const [channels, loading, error] = useCollection(db.collection("rooms"));
   if (loading) return <p>Loading</p>;
   return (
@@ -27,7 +30,7 @@ function SideBar() {
           <h2>PAPA FAM HQ</h2>
           <h3>
             <FiberManualRecordIcon />
-            Sonny Sangha
+            {user?.displayName}
           </h3>
         </SideBarInfo>
         <CreateIcon />
